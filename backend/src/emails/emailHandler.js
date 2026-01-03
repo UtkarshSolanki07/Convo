@@ -1,8 +1,9 @@
 import { resendClient, sender } from "../lib/resend.js";
 import { createWelcomeEmailTemplate } from "./emailTemplates.js";
+import { ENV } from "../lib/env.js";
 export const sendWelcomeEmail = async (toEmail, name, clientURL) => {
     const fromAddress = (sender && sender.name) ? `${sender.name} <${sender.email}>` : ((sender && sender.email) || "onboarding@resend.dev");
-    const siteURL = clientURL || process.env.CLIENT_URL;
+    const siteURL = clientURL || ENV.CLIENT_URL;
     if (!siteURL) {
         throw new Error("CLIENT_URL is not set in environment and no URL was provided to sendWelcomeEmail");
     }
