@@ -38,6 +38,32 @@ export const sendMessage = async (req, res) => {
     const { text, image } = req.body;
     const { id: receiverId } = req.params;
     const senderId = req.user._id;
+    // Validate that at least text or image is provided
+    if (!text && !image) {
+      return res.status(400).json({ message: "Message must contain text or an image" });
+    }
+
+    // Validate text length
+    if (text && text.length > 2000) {
+      return res.status(400).json({ message: "Text cannot exceed 2000 characters" });
+    }
+
+    // Validate receiverId is a valid ObjectId
+    if (!mongoose.Types.ObjectId.isValid(receiverId)) {
+      return res.status(400).json({ message: "Invalid receiver ID" });
+    }
+
+    // Validate receiver exists
+    const receiver = await User.findById(receiverId);
+    if (!receiver) {
+      return res.status(404).json({ message: "Receiver not found" });
+    }
+
+    // Prevent self-messaging
+    if (senderId.toString() === receiverId) {
+      return res.status(400).json({ message: "Cannot send messages to yourself" });
+    }
+    
     let imageUrl;
     if (image) {
       const uploadResponse = await cloudinary.uploader.upload(image);
