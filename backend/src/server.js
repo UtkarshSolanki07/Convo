@@ -1,20 +1,23 @@
 import express from "express";
+import cors from "cors";
+import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.routes.js";
 import path from "path";
 import {connectDB} from "./lib/db.js";
 import { ENV } from "./lib/env.js";
-import cookieParser from "cookie-parser";
 
 const PORT = ENV.PORT;
 
 const app = express();
 const __dirname = path.resolve();
 
+app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
+// app.use("/api/messages", authMiddleware, messageRoutes); // attach auth if present
 app.use("/api/messages", messageRoutes);
 
 //Deployment
