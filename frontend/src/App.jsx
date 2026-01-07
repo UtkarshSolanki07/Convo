@@ -4,6 +4,13 @@ import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
 import ChatPage from './pages/ChatPage'
 import { useAuthStore } from './store/useAuthStore'
+/**
+ * Root application component that provides the main layout, decorative background, a login trigger, and routes for the Chat, Login, and SignUp pages.
+ *
+ * Reads authentication state from the auth store and exposes a button that invokes the store's `login` action.
+ *
+ * @returns {JSX.Element} The root React element containing the application layout and routing. 
+ */
 function App() {
     const {authUser,login,isLoggedIn,isLoading} = useAuthStore();
     console.log(authUser)
