@@ -4,6 +4,13 @@ import BorderAnimatedContainer from "../components/BorderAnimatedContainer";
 import { MessageCircleIcon, LockIcon, MailIcon, UserIcon, LoaderIcon } from "lucide-react";
 import { Link } from "react-router";
 
+/**
+ * Render the sign-up page UI and manage its form state.
+ *
+ * Displays a responsive sign-up form with fields for full name, email, and password, updates local state on input, and submits the collected data via the authentication store's signup action. The submit button is disabled and shows a loading indicator while a signup is in progress.
+ *
+ * @returns {JSX.Element} The SignUp page component.
+ */
 function SignUpPage() {
   const [formData, setFormData] = useState({ fullName: "", email: "", password: "" });
   const { signup, isSigningUp } = useAuthStore();
