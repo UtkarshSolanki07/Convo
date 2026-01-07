@@ -6,6 +6,13 @@ import ChatPage from './pages/ChatPage'
 import { useAuthStore } from './store/useAuthStore'
 import PageLoader from './components/PageLoader'
 import { Toaster } from 'react-hot-toast'
+/**
+ * Root application component that verifies authentication on mount and conditionally renders a loader or the routed pages.
+ *
+ * Triggers authentication verification on mount (or when `checkAuth` changes). While `isCheckingAuth` is true renders the PageLoader; otherwise renders the app shell with decorative background layers, route configuration that redirects between Chat, Login, and SignUp based on `authUser`, and a Toaster for notifications.
+ *
+ * @returns {JSX.Element} The application's layout containing background visuals, auth-gated routes, and a toast container.
+ */
 function App() {
     const {checkAuth,isCheckingAuth, authUser}=useAuthStore()
     useEffect(()=>{
