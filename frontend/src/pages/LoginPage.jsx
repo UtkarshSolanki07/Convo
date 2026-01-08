@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { useAuthStore } from '../store/useAuthStore'
 import BorderAnimatedContainer from '../components/BorderAnimatedContainer'
-import { MessageCircleIcon, LockIcon, MailIcon, UserIcon, LoaderIcon } from 'lucide-react'
+import { MessageCircleIcon, LockIcon, MailIcon,LoaderIcon } from 'lucide-react'
 import { Link } from 'react-router'
 
 function LoginPage() {
@@ -41,6 +41,7 @@ function LoginPage() {
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className="input"
                         placeholder="johndoe@gmail.com"
+                        required
                       />
                     </div>
                   </div>
@@ -57,6 +58,7 @@ function LoginPage() {
                         onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                         className="input"
                         placeholder="Enter your password"
+                        required
                       />
                     </div>
                   </div>
