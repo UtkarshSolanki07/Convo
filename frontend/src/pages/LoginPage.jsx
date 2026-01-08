@@ -4,6 +4,13 @@ import BorderAnimatedContainer from '../components/BorderAnimatedContainer'
 import { MessageCircleIcon, LockIcon, MailIcon, UserIcon, LoaderIcon } from 'lucide-react'
 import { Link } from 'react-router'
 
+/**
+ * Renders the login page with a controlled email/password form and an illustrative panel.
+ *
+ * The form is bound to local state and, on submit, calls the auth store's `login` with the form data.
+ * The submit button is disabled and shows a loader while `isLogginIn` is true.
+ * @returns {JSX.Element} The login page React element.
+ */
 function LoginPage() {
   const {login,isLogginIn}=useAuthStore()
   const [formData,setFormData]=useState({email:"",password:""})
