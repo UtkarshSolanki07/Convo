@@ -1,3 +1,9 @@
+/**
+ * Renders a vertical stack of three pulsing user skeleton placeholders.
+ *
+ * Each placeholder contains a circular avatar and two lines representing text.
+ * @returns {JSX.Element} A container with three loading skeleton items.
+ */
 function UsersLoadingSkeleton() {
   return (
     <div className="space-y-2">

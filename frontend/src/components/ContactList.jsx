@@ -3,6 +3,13 @@ import { useChatStore } from "../store/useChatStore";
 import UsersLoadingSkeleton from "./UsersLoadingSkeleton";
 import { useAuthStore } from "../store/useAuthStore";
 
+/**
+ * Render a list of contacts showing each contact's avatar, online status, and full name; clicking a contact selects it for chat.
+ *
+ * This component fetches contacts on mount and displays a loading skeleton while contacts are being loaded.
+ *
+ * @returns {JSX.Element} The contact list UI or a UsersLoadingSkeleton when contacts are loading.
+ */
 function ContactList() {
   const { getAllContacts, allContacts, setSelectedUser, isUsersLoading } = useChatStore();
   const { onlineUsers } = useAuthStore();

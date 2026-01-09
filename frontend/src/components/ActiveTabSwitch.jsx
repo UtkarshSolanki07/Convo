@@ -1,5 +1,11 @@
 import { useChatStore } from "../store/useChatStore";
 
+/**
+ * Render a two-button tab switch that lets the user choose between "Chats" and "Contacts".
+ *
+ * Clicking a button sets the active tab to "chats" or "contacts" and applies active styling to the selected button.
+ * @returns {JSX.Element} The rendered tab switch element.
+ */
 function ActiveTabSwitch() {
   const { activeTab, setActiveTab } = useChatStore();
 
