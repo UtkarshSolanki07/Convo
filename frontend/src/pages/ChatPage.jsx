@@ -7,6 +7,15 @@ import ContactList from '../components/ContactList'
 import ChatContainer from '../components/ChatContainer'
 import NoConversationPlaceholder from '../components/NoConversationPlaceholder'
 
+/**
+ * Renders the two-pane chat page driven by chat store state.
+ *
+ * The left pane contains the profile header, tab switch, and either the chats list or contact list
+ * depending on the active tab. The right pane displays the chat container when a user is selected
+ * or a placeholder when no conversation is selected.
+ *
+ * @returns {JSX.Element} The chat page element with the left navigation pane and the main chat pane.
+ */
 function ChatPage() {
   const {activeTab,selectedUser}=useChatStore()
   return (
