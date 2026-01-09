@@ -3,6 +3,15 @@ import { useAuthStore } from "../store/useAuthStore";
 import { X } from "lucide-react";
 import { useEffect } from "react";
 
+/**
+ * Render a chat header showing the selected user's avatar, name, online status, and a close button.
+ *
+ * The component reads the selected user and setter from the chat store and online users from the auth store.
+ * Pressing Escape or clicking the close button clears the selected user. The avatar falls back to "/avatar.png"
+ * if no profile picture is available or if the image fails to load.
+ * 
+ * @returns {JSX.Element} The header UI for the active chat user.
+ */
 function ChatHeader() {
     const {selectedUser,setSelectedUser}=useChatStore();
     const {onlineUsers}=useAuthStore();
