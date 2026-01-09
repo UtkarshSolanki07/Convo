@@ -5,6 +5,13 @@ import ChatHeader from "./ChatHeader";
 import NoChatHistoryPlaceholder from "./NoChatHistoryPlaceholder";
 import MessagesLoadingSkeleton from "./MessagesLoadingSkeleton";
 import MessageInput from "./MessageInput";
+/**
+ * Renders the main chat UI for the currently selected user, including header, message list, loading state, no-history placeholder, and input.
+ *
+ * Triggers loading of the selected user's messages when the selected user changes.
+ *
+ * @returns The chat container React element with header, messages (or loading skeleton / no-history placeholder), and message input.
+ */
 function ChatContainer() {
   const {selectedUser,getMessagesByUserId,messages,isMessagesLoading}=useChatStore();
   const {authUser}=useAuthStore();
