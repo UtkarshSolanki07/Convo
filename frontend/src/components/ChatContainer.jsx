@@ -6,6 +6,13 @@ import NoChatHistoryPlaceholder from "./NoChatHistoryPlaceholder";
 import MessagesLoadingSkeleton from "./MessagesLoadingSkeleton";
 import MessageInput from "./MessageInput";
 import { formatMessageTime } from "../lib/utils";
+/**
+ * Render the chat UI for the currently selected user, showing message bubbles, a loading skeleton, or an empty-history placeholder.
+ *
+ * Fetches messages for the selected user and auto-scrolls to the latest message when the message list updates.
+ *
+ * @returns {JSX.Element} The chat container element for the active conversation.
+ */
 function ChatContainer() {
   const {selectedUser,getMessagesByUserId,messages,isMessagesLoading}=useChatStore();
   const {authUser}=useAuthStore();
