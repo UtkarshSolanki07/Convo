@@ -1,18 +1,26 @@
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import { useChatStore } from "../store/useChatStore"
 import { useAuthStore } from "../store/useAuthStore";
 import ChatHeader from "./ChatHeader";
 import NoChatHistoryPlaceholder from "./NoChatHistoryPlaceholder";
 import MessagesLoadingSkeleton from "./MessagesLoadingSkeleton";
 import MessageInput from "./MessageInput";
+import { formatMessageTime } from "../lib/utils";
 function ChatContainer() {
   const {selectedUser,getMessagesByUserId,messages,isMessagesLoading}=useChatStore();
   const {authUser}=useAuthStore();
+  const messageEndRef=useRef(null);
+
   
   useEffect(()=>{
     getMessagesByUserId(selectedUser._id);
   },[selectedUser,getMessagesByUserId])
 
+  useEffect(()=>{
+    if(messageEndRef.current){
+      messageEndRef.current.scrollIntoView({behavior:"smooth"})
+    }
+  },[messages]);
   return (
     <>
     <ChatHeader/>
@@ -27,11 +35,12 @@ function ChatContainer() {
                 )}
                 {msg.text && <p className="mt-2">{msg.text}</p>}
                 <p className="text-xs mt-1 opacity-75 flex items-center gap-1">
-                  {new Date(msg.createdAt).toISOString().slice(11,16)}
+                  {formatMessageTime(msg.createdAt)}
                 </p>
               </div>
             </div>
           ))}
+          <div ref={messageEndRef}/>
         </div>
       ) : isMessagesLoading ? (
         <MessagesLoadingSkeleton/>

@@ -1,6 +1,7 @@
 import User from "../models/User.js";
 import Message from "../models/Message.js";
 import cloudinary from "../lib/cloudinary.js";
+import mongoose from "mongoose";
 export const getAllContacts = async (req, res) => {
   try {
     const loggedInUserId = req.user._id;
