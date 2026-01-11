@@ -16,6 +16,10 @@ const io=new Server(server,{
 
 io.use(socketAuthMiddleware);
 
+export function getReceiverSocketId(userId){
+    return userSocketMap[userId];
+}
+    
 const userSocketMap={};
 
 io.on("connection",(socket)=>{
@@ -34,7 +38,7 @@ io.on("connection",(socket)=>{
     }); 
 
     socket.on("send-message",(data)=>{
-        const receiverSocketId=userSocketMap[data.receiverId];
+        const receiverSocketId=getReceiverSocketId(data.receiverId);
         if(receiverSocketId){
             io.to(receiverSocketId).emit("receive-message",data);
         }
