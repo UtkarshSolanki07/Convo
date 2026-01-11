@@ -70,7 +70,7 @@ export const useAuthStore = create((set,get)=>({
             toast.error(error.response.data.message)
         }
     },
-    connectSocket:async()=>{
+    connectSocket:()=>{
         const {authUser}=get()
         if(!authUser || get().socket?.connected){
             return;
@@ -86,7 +86,7 @@ export const useAuthStore = create((set,get)=>({
         })
     },
 
-    disconnectSocket:async()=>{
+    disconnectSocket:()=>{
         if(get().socket?.connected) get().socket?.disconnect();
         set({socket:null})
     }
