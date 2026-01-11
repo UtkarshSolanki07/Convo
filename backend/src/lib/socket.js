@@ -16,6 +16,11 @@ const io=new Server(server,{
 
 io.use(socketAuthMiddleware);
 
+/**
+ * Retrieve the Socket.IO socket ID associated with a user ID.
+ * @param {string} userId - The ID of the user to look up.
+ * @returns {string|undefined} The socket ID for the user if connected, `undefined` otherwise.
+ */
 export function getReceiverSocketId(userId){
     return userSocketMap[userId];
 }

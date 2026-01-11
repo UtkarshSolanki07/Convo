@@ -6,6 +6,13 @@ import NoChatHistoryPlaceholder from "./NoChatHistoryPlaceholder";
 import MessagesLoadingSkeleton from "./MessagesLoadingSkeleton";
 import MessageInput from "./MessageInput";
 import { formatMessageTime } from "../lib/utils";
+/**
+ * Render the chat UI for the currently selected user, including header, message list, and message input.
+ *
+ * Subscribes to live message updates for the selected user and scrolls the view to the latest message.
+ *
+ * @returns {JSX.Element} The chat container UI.
+ */
 function ChatContainer() {
   const {selectedUser,getMessagesByUserId,messages,isMessagesLoading,subscribeToMessages,unsubscribeFromMessages}=useChatStore();
   const {authUser}=useAuthStore();
