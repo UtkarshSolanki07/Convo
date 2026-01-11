@@ -6,10 +6,11 @@ import messageRoutes from "./routes/message.routes.js";
 import path from "path";
 import {connectDB} from "./lib/db.js";
 import { ENV } from "./lib/env.js";
+import { app, server } from "./lib/socket.js";
 
 const PORT = ENV.PORT;
 
-const app = express();
+
 const __dirname = path.resolve();
 
 app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
@@ -18,7 +19,6 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
-// app.use("/api/messages", authMiddleware, messageRoutes); // attach auth if present
 app.use("/api/messages", messageRoutes);
 
 //Deployment
@@ -31,7 +31,7 @@ if(ENV.NODE_ENV==="production"){
 
 }
 
-app.listen(PORT, () =>{ 
+server.listen(PORT, () =>{ 
     console.log("Server is running on port: " + PORT)
     connectDB();
 });

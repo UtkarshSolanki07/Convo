@@ -6,7 +6,7 @@ import { useEffect } from "react";
 function ChatHeader() {
     const {selectedUser,setSelectedUser}=useChatStore();
     const {onlineUsers}=useAuthStore();
-    const isOnline=onlineUsers.includes(selectedUser._id); 
+    const isOnline=selectedUser ? onlineUsers.includes(selectedUser._id.toString()) : false; 
     useEffect(()=>{
         const handleEscKey=(event)=>{
             if(event.key==="Escape") setSelectedUser(null);
